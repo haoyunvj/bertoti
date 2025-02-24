@@ -1,6 +1,6 @@
 # bertoti engenharia de software
 
--------------------------------------------------------------------------------- 14/2 ------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------- 14/2 ----------------------------------------------------------------
 
 1 - Esse trecho discute a diferença entre engenharia de software, programação e ciência da computação, e faz um paralelo interessante entre o campo da engenharia de software e outras engenharias tradicionais. A principal mensagem é que engenharia de software não se resume a escrever código (programação), mas sim a uma abordagem mais ampla e estruturada, que envolve o uso de princípios teóricos e metodológicos para construir aplicações.
 
@@ -16,4 +16,15 @@ Escalabilidade: Um sistema altamente escalável pode lidar com grandes volumes d
 
 Segurança: Medidas rigorosas de segurança, como autenticação multifatorial, criptografia e verificações de permissão, são essenciais para proteger dados e prevenir vulnerabilidades. No entanto, essas medidas podem tornar o sistema mais complexo e menos conveniente para o usuário final.
 
--------------------------------------------------------------------------------- 21/2 ------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------- 21/2 ------------------------------------------------------------------
+
+código: 
+
+![image](https://github.com/user-attachments/assets/3234e3d4-294f-4bd7-9f95-19028475a447)
+![image](https://github.com/user-attachments/assets/4ea07081-bbdb-41c7-804c-557540f30314)
+![image](https://github.com/user-attachments/assets/7a05df75-46b5-4f33-94d1-cdd8ef9b8e72)
+
+diagrama UML:
+
+![image](https://github.com/user-attachments/assets/fc9d4cd7-d3e2-44a7-b64f-dd140d41b2ef)
+
