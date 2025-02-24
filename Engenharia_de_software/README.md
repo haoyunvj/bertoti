@@ -1,4 +1,6 @@
-# bertoti
+# bertoti engenharia de software
+
+-------------------------------------------------------------------------------- 14/2 ------------------------------------------------------------------------------------------
 
 1 - Esse trecho discute a diferença entre engenharia de software, programação e ciência da computação, e faz um paralelo interessante entre o campo da engenharia de software e outras engenharias tradicionais. A principal mensagem é que engenharia de software não se resume a escrever código (programação), mas sim a uma abordagem mais ampla e estruturada, que envolve o uso de princípios teóricos e metodológicos para construir aplicações.
 
@@ -13,3 +15,5 @@ O princípio de compensação e custos se refere como as decisões precisam ser 
 Escalabilidade: Um sistema altamente escalável pode lidar com grandes volumes de dados ou usuários. Para alcançar isso, muitas vezes é necessário projetar a arquitetura de forma complexa, com componentes distribuídos, microserviços ou múltiplos servidores, o que pode aumentar o custo para manter o sistema.
 
 Segurança: Medidas rigorosas de segurança, como autenticação multifatorial, criptografia e verificações de permissão, são essenciais para proteger dados e prevenir vulnerabilidades. No entanto, essas medidas podem tornar o sistema mais complexo e menos conveniente para o usuário final.
+
+-------------------------------------------------------------------------------- 21/2 ------------------------------------------------------------------------------------------
