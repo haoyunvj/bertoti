@@ -16,9 +16,8 @@ Escalabilidade: Um sistema altamente escalável pode lidar com grandes volumes d
 
 Segurança: Medidas rigorosas de segurança, como autenticação multifatorial, criptografia e verificações de permissão, são essenciais para proteger dados e prevenir vulnerabilidades. No entanto, essas medidas podem tornar o sistema mais complexo e menos conveniente para o usuário final.
 
--------------------------------------------------------------------------------- 21/2 ------------------------------------------------------------------
+-------------------------------------------------------------------------------- 21/2 CÓDIGO ATIVIDADE 5: ------------------------------------------------------------------
 
-código: 
 
 ![image](https://github.com/user-attachments/assets/3234e3d4-294f-4bd7-9f95-19028475a447)
 ![image](https://github.com/user-attachments/assets/4ea07081-bbdb-41c7-804c-557540f30314)
@@ -28,3 +27,131 @@ diagrama UML:
 
 ![image](https://github.com/user-attachments/assets/fc9d4cd7-d3e2-44a7-b64f-dd140d41b2ef)
 
+
+---------------------------------------------------------------------------------- Atividade 7 - SQLite --------------------------------------------------------------------
+Classe Main
+
+Arquivo: Main.java
+
+package org.example;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+public class Main {
+    public static void main(String[] args) {
+        LojaEletronico loja = new LojaEletronico();
+        loja.conectar();
+        loja.criarTabela();
+        loja.cadastrarCelular("S25", "Android", "Samsung", "Azul Marinho", 1900.99);
+        loja.cadastrarCelular("Iphone 15 Pro MAX", "IOS","Iphone", "Branco", 5699.99);
+        loja.encontrarCelular();
+
+    }
+}
+Classe LojaEletronico
+
+Arquivo: LojaElettronico.java
+
+package org.example;
+import java.sql.*;
+
+public class LojaEletronico {
+
+    //Linkagem com meu banco de Eletrônicos
+    private String url = "jdbc:sqlite:LojaEletronico.db";
+
+    public void conectar() {
+        //Tentando conectar com o link
+        try (var conn = DriverManager.getConnection(url)) {
+            if (conn != null) {
+                System.out.println("Conexão com o banco de dados estabelecida.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro na conexão com o banco: " + e.getMessage());
+        }
+    }
+
+    // Usando parametro conn para estabelecer conexão e criando a tabela
+    public void criarTabela(){
+        String sql = "CREATE TABLE IF NOT EXISTS celular(\n"
+                + "nome TEXT PRIMARY KEY, \n"
+                + "so TEXT NOT NULL, \n"
+                + "marca TEXT NOT NULL, \n"
+                + "cor TEXT NOT NULL, \n"
+                + "preco DOUBLE NOT NULL \n"
+                + ");";
+        // Verificação se há a tabela foi criada através da Classe t
+        try(var conn = DriverManager.getConnection(url);
+            var stmt = conn.createStatement()){
+            stmt.execute(sql);
+            System.out.println("Tabela criada com sucesso!");
+        } catch (SQLException e) {
+            System.out.println("Tabela não foi criada" + e.getMessage());
+        }
+    }
+    //Processo para cadastrar celulares
+    public void cadastrarCelular(String nome, String so, String marca, String cor, Double preco){
+        String sql = "INSERT INTO celular(nome, so, marca, cor, preco) VALUES(?,?,?,?,?)";
+
+        //Verificar a inserção de dados
+        try (var conn = DriverManager.getConnection(url);
+             var stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, nome);
+            stmt.setString(2, so);
+            stmt.setString(3, marca);
+            stmt.setString(4, cor);
+            stmt.setDouble(5, preco);
+            System.out.println("Celular cadastrado com sucesso!");
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void encontrarCelular(){
+        String sql = "SELECT * FROM celular ";
+
+        try(var conn = DriverManager.getConnection(url);
+            var stmt = conn.createStatement();
+
+            var rs = stmt.executeQuery(sql)){
+            System.out.println(rs);
+            while (rs.next()){
+                System.out.println("------------------------------");
+                System.out.println(rs.getString("nome"));
+                System.out.println(rs.getString("so"));
+                System.out.println(rs.getString("marca"));
+                System.out.println(rs.getString("cor"));
+                System.out.println(rs.getDouble("preco"));
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+}
+POM.XML
+
+Arquivo: pom.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>AtividadeSQLite</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>23</maven.compiler.source>
+        <maven.compiler.target>23</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+    <dependency>
+        <groupId>org.xerial</groupId>
+        <artifactId>sqlite-jdbc</artifactId>
+        <version>3.49.1.0</version>
+    </dependency>
+    </dependencies>
+
+</project>
