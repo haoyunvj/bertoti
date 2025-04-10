@@ -35,4 +35,98 @@ ATIVIDADE 5 -> Java (Imagem do código no link).
 ---------------------------------------------------------------------------
 ATIVIDADE 6 -> TESTES COM JUNITY ASSERTEQUALS
 
+`import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class EstacionamentoTest {
+
+    private Estacionamento estacionamento;
+
+    @BeforeEach
+    public void setUp() {
+        estacionamento = new Estacionamento();
+    }
+
+    @Test
+    public void testAddPlaca() {
+        // Arrange
+        Placa placa = new Placa("ABC1234");
+
+        // Act
+        estacionamento.addPlaca(placa);
+        List<Placa> placas = estacionamento.getPlacas();
+
+        // Assert
+        assertEquals(1, placas.size());
+        assertEquals("ABC1234", placas.get(0).getPlaca());
+    }
+
+    @Test
+    public void testBuscarPlacaExistente() {
+        // Arrange
+        Placa placa1 = new Placa("ABC1234");
+        Placa placa2 = new Placa("XYZ9876");
+        Placa placa3 = new Placa("ABC1234"); // Placa duplicada propositalmente
+
+        estacionamento.addPlaca(placa1);
+        estacionamento.addPlaca(placa2);
+        estacionamento.addPlaca(placa3);
+
+        // Act
+        List<Placa> placasEncontradas = estacionamento.buscarPlaca("ABC1234");
+
+        // Assert
+        assertEquals(2, placasEncontradas.size());
+        assertEquals("ABC1234", placasEncontradas.get(0).getPlaca());
+        assertEquals("ABC1234", placasEncontradas.get(1).getPlaca());
+    }
+
+    @Test
+    public void testBuscarPlacaInexistente() {
+        // Arrange
+        Placa placa = new Placa("ABC1234");
+        estacionamento.addPlaca(placa);
+
+        // Act
+        List<Placa> placasEncontradas = estacionamento.buscarPlaca("XYZ9876");
+
+        // Assert
+        assertTrue(placasEncontradas.isEmpty());
+    }
+
+    @Test
+    public void testSetPlaca() {
+        // Arrange
+        Placa placa = new Placa("ABC1234");
+
+        // Act
+        String oldId = placa.setPlaca("XYZ9876");
+
+        // Assert
+        assertEquals("ABC1234", oldId);
+        assertEquals("XYZ9876", placa.getPlaca());
+    }
+
+    @Test
+    public void testBuscarAposModificarPlaca() {
+        // Arrange
+        Placa placa = new Placa("ABC1234");
+        estacionamento.addPlaca(placa);
+
+        // Act
+        placa.setPlaca("XYZ9876");
+        List<Placa> placasAntigas = estacionamento.buscarPlaca("ABC1234");
+        List<Placa> placasNovas = estacionamento.buscarPlaca("XYZ9876");
+
+        // Assert
+        assertTrue(placasAntigas.isEmpty());
+        assertEquals(1, placasNovas.size());
+        assertEquals("XYZ9876", placasNovas.get(0).getPlaca());
+    }
+`
 
